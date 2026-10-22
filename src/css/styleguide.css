@@ -1,0 +1,94 @@
+/* Styles that only exist for the styleguide preview page. */
+
+.sg-swatch {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0;
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.sg-swatch-color {
+  height: 5.5rem;
+  border-bottom: var(--border-width-thin) solid var(--color-border);
+}
+
+.sg-swatch figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.75rem 1rem;
+  font-size: var(--text-body-sm);
+}
+
+.sg-code {
+  color: var(--color-text-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--text-caption);
+  overflow-wrap: anywhere;
+}
+
+.sg-panel {
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  border: var(--border-width-thin) dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.sg-box {
+  display: grid;
+  place-items: center;
+  min-height: 4rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+}
+
+.sg-bar {
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+}
+
+.sg-container-demo {
+  padding-block: 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-soft);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.sg-container-demo > span {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+}
+
+.sg-track {
+  position: relative;
+  height: 2.5rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface-muted);
+}
+
+.sg-marker {
+  position: absolute;
+  top: 0.25rem;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+
+.sg-track-inner {
+  position: absolute;
+  inset: 0 0.25rem;
+}

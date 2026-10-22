@@ -1,0 +1,24 @@
+{
+  "name": "landingpage-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Starter für statische, animierte Landingpages auf Basis von Figma-Designs (Vite, Tailwind CSS, GSAP, Lenis).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.27"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.5"
+  }
+}

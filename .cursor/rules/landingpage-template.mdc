@@ -1,0 +1,40 @@
+---
+description: Stack, Designsystem und Arbeitsweise für dieses Landingpage-Template
+alwaysApply: true
+---
+
+# Landingpage Template
+
+Statisches Multi-Page-Starterprojekt (Vite, Vanilla HTML/JS, Tailwind 4, GSAP, Lenis). Kein React, Vue, Angular, TypeScript, jQuery, CDN oder extra UI-Framework.
+
+## Design und CSS
+
+- Farben, Typo, Spacing, Radien, Schatten, Motion nur in `src/css/tokens.css` ändern. Semantische Namen (`--color-primary`), keine Palette wie `blue-500`.
+- Tailwind für Layout, Grid, Flex, Abstände, Responsive. Wiederkehrende UI in `src/css/components.css` (`.button-primary`, `.card`, `.form-control`). `@apply` nur sparsam.
+- Fonts über `src/css/fonts.css` und `public/assets/fonts/`. Styleguide (`styleguide.html`) nach Token-Änderungen prüfen, bevor die Landingpage umgebaut wird.
+
+## JavaScript
+
+- ES Modules, Einstieg `src/js/main.js`. Kein Inline-JS, keine Inline-Styles.
+- Motion-Werte aus `src/js/config.js`. GSAP nur über `src/js/gsap.js` importieren. Lenis nur in `src/js/smooth-scroll.js`; eine RAF-Schleife (`autoRaf: false` + GSAP-Ticker).
+- Animationen über Data-Attribute: `data-animate="fade-up|fade-in|scale-in|stagger"`, `data-intro` / `data-intro-item`, `data-parallax`. Nur `transform` und `opacity`. Inhalte ohne JS sichtbar lassen.
+- GSAP-Animationen ausschließlich über `gsap.matchMedia()` und `prefers-reduced-motion` anlegen, nach [GSAP Accessible Animation](https://gsap.com/resources/getting-started/accessibility/):
+
+```js
+const mm = gsap.matchMedia();
+mm.add('(prefers-reduced-motion: no-preference)', () => { /* volle Motion */ });
+mm.add('(prefers-reduced-motion: reduce)', () => { /* nur Opacity oder duration: 0 */ });
+```
+
+- **Reduce:** keine großen X/Y-Bewegungen, kein Scale, kein Parallax, kein Lenis, keine Loop-Tweens. Dekoratives entfernen, Funktionales vereinfachen (z. B. Accordion ohne Height-Tween). `matchMedia` revertet beim Wechsel der OS-Einstellung. Kein `gsap.context()` in `matchMedia` nesten.
+- Formulare: `src/js/form.js` + `src/js/participation-api.js`. Kein Local/Session Storage, keine Cookies. API nur in `submitParticipation()`, `config.form.endpoint` setzen, keinen erfundenen Endpunkt. Clientvalidierung ersetzt keine Serverprüfung.
+
+## HTML und Copy
+
+- Semantisches HTML, Skip-Link, sichtbare Focus States, Labels, `aria-*` nur wenn nötig. Deutsche, neutrale Texte – kein Lorem Ipsum.
+- Neue HTML-Seite: Root-Datei + Eintrag in `pages` in `vite.config.js` (`build.rolldownOptions.input`). CSS/JS wie bestehende Seiten einbinden (`/src/css/main.css`, `/src/js/main.js`).
+- `datenschutz.html` und `impressum.html` sind Platzhalter, keine fertigen Rechtstexte.
+
+## Figma
+
+Reihenfolge: Tokens → Fonts → Styleguide → Seitenlayout → Bilder/SVGs nach `public/assets/` → Animationen zuletzt → Responsive, A11y, Performance.

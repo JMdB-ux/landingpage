@@ -1,0 +1,22 @@
+@utility measure {
+  max-width: 65ch;
+}
+
+@utility flow {
+  & > * + * {
+    margin-block-start: var(--flow-space, 1em);
+  }
+}
+
+/*
+ * Initial states for GSAP reveals. Hidden only when scripting can run the fade,
+ * including the reduced-motion opacity-only path. Without JavaScript or if
+ * main.js adds .motion-fallback, content stays visible.
+ */
+@layer utilities {
+  @media (scripting: enabled) {
+    html:not(.motion-fallback) :is([data-animate="fade-up"], [data-animate="fade-in"], [data-animate="scale-in"], [data-animate="stagger"] > *, [data-intro-item]) {
+      opacity: 0;
+    }
+  }
+}

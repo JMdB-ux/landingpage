@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Styleguide | Landingpage Template</title>
+    <meta name="description" content="Visuelle Kontrollseite für Design Tokens und Komponenten.">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#2445c4">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/src/css/main.css">
+    <link rel="stylesheet" href="/src/css/styleguide.css">
+    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/styleguide.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+    <header class="site-header" data-site-header>
+      <div class="container-site container-site-wide site-header-inner">
+        <a class="site-logo" href="index.html">
+          <img src="/assets/images/logo-placeholder.svg" alt="Markenname – zur Startseite" width="160" height="32">
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="styleguide-nav" aria-label="Menü öffnen" data-nav-toggle>
+          <span class="nav-toggle-icon" aria-hidden="true"></span>
+          <span data-nav-toggle-label>Menü</span>
+        </button>
+
+        <nav class="site-nav" id="styleguide-nav" aria-label="Styleguide-Navigation" data-lenis-prevent>
+          <ul class="site-nav-list" role="list">
+            <li><a class="site-nav-link" href="#farben">Farben</a></li>
+            <li><a class="site-nav-link" href="#typografie">Typografie</a></li>
+            <li><a class="site-nav-link" href="#buttons">Buttons</a></li>
+            <li><a class="site-nav-link" href="#komponenten">Komponenten</a></li>
+            <li><a class="site-nav-link" href="#formulare">Formulare</a></li>
+            <li><a class="site-nav-link" href="#layout">Layout</a></li>
+            <li><a class="site-nav-link" href="#animation">Animation</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="section pb-12" aria-labelledby="page-title">
+        <div class="container-site container-site-wide flex flex-col items-start gap-4" data-intro>
+          <p class="eyebrow" data-intro-item>Designsystem</p>
+          <h1 class="h1" id="page-title" data-intro-item>Styleguide</h1>
+          <p class="lead measure" data-intro-item>
+            Diese Seite zeigt alle Design Tokens und Komponenten des Templates. Nutzen Sie sie beim Übertragen eines
+            Figma-Designs als visuelle Kontrolle: Änderungen in <code class="sg-code">tokens.css</code> und
+            <code class="sg-code">components.css</code> werden hier sofort sichtbar.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-surface" id="farben" aria-labelledby="colors-title">
+        <div class="container-site container-site-wide">
+          <div class="section-header">
+            <p class="eyebrow">Tokens</p>
+            <h2 id="colors-title">Farbpalette</h2>
+            <p class="lead">Semantische Farbtokens aus <code class="sg-code">src/css/tokens.css</code>. Jede Farbe steht als Tailwind-Utility zur Verfügung, zum Beispiel <code class="sg-code">bg-primary</code> oder <code class="sg-code">text-text-muted</code>.</p>
+          </div>
+          <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5" role="list">
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-primary"></div>
+                  <figcaption>
+                    <strong>Primary</strong>
+                    <span class="text-text-muted">Buttons, Links, Akzente</span>
+                    <code class="sg-code">--color-primary: <span data-token-value="--color-primary"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-primary-hover"></div>
+                  <figcaption>
+                    <strong>Primary Hover</strong>
+                    <span class="text-text-muted">Hover-Zustand Primary</span>
+                    <code class="sg-code">--color-primary-hover: <span data-token-value="--color-primary-hover"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-primary-soft"></div>
+                  <figcaption>
+                    <strong>Primary Soft</strong>
+                    <span class="text-text-muted">Icon- und Badge-Flächen</span>
+                    <code class="sg-code">--color-primary-soft: <span data-token-value="--color-primary-soft"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-on-primary"></div>
+                  <figcaption>
+                    <strong>On Primary</strong>
+                    <span class="text-text-muted">Text auf Primary</span>
+                    <code class="sg-code">--color-on-primary: <span data-token-value="--color-on-primary"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-secondary"></div>
+                  <figcaption>
+                    <strong>Secondary</strong>
+                    <span class="text-text-muted">Footer, dunkle Sections</span>
+                    <code class="sg-code">--color-secondary: <span data-token-value="--color-secondary"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-secondary-hover"></div>
+                  <figcaption>
+                    <strong>Secondary Hover</strong>
+                    <span class="text-text-muted">Hover-Zustand Secondary</span>
+                    <code class="sg-code">--color-secondary-hover: <span data-token-value="--color-secondary-hover"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-accent"></div>
+                  <figcaption>
+                    <strong>Accent</strong>
+                    <span class="text-text-muted">Dekorative Akzente</span>
+                    <code class="sg-code">--color-accent: <span data-token-value="--color-accent"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-accent-soft"></div>
+                  <figcaption>
+                    <strong>Accent Soft</strong>
+                    <span class="text-text-muted">Akzentflächen</span>
+                    <code class="sg-code">--color-accent-soft: <span data-token-value="--color-accent-soft"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-background"></div>
+                  <figcaption>
+                    <strong>Background</strong>
+                    <span class="text-text-muted">Seitenhintergrund</span>
+                    <code class="sg-code">--color-background: <span data-token-value="--color-background"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-surface"></div>
+                  <figcaption>
+                    <strong>Surface</strong>
+                    <span class="text-text-muted">Cards, Header, Formulare</span>
+                    <code class="sg-code">--color-surface: <span data-token-value="--color-surface"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-surface-muted"></div>
+                  <figcaption>
+                    <strong>Surface Muted</strong>
+                    <span class="text-text-muted">Gedämpfte Flächen</span>
+                    <code class="sg-code">--color-surface-muted: <span data-token-value="--color-surface-muted"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-text"></div>
+                  <figcaption>
+                    <strong>Text</strong>
+                    <span class="text-text-muted">Fließtext, Headlines</span>
+                    <code class="sg-code">--color-text: <span data-token-value="--color-text"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-text-muted"></div>
+                  <figcaption>
+                    <strong>Text Muted</strong>
+                    <span class="text-text-muted">Sekundärtext</span>
+                    <code class="sg-code">--color-text-muted: <span data-token-value="--color-text-muted"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-border"></div>
+                  <figcaption>
+                    <strong>Border</strong>
+                    <span class="text-text-muted">Dekorative Linien</span>
+                    <code class="sg-code">--color-border: <span data-token-value="--color-border"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-border-strong"></div>
+                  <figcaption>
+                    <strong>Border Strong</strong>
+                    <span class="text-text-muted">Formularfeld-Rahmen</span>
+                    <code class="sg-code">--color-border-strong: <span data-token-value="--color-border-strong"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-success"></div>
+                  <figcaption>
+                    <strong>Success</strong>
+                    <span class="text-text-muted">Erfolgsstatus</span>
+                    <code class="sg-code">--color-success: <span data-token-value="--color-success"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-warning"></div>
+                  <figcaption>
+                    <strong>Warning</strong>
+                    <span class="text-text-muted">Hinweisstatus</span>
+                    <code class="sg-code">--color-warning: <span data-token-value="--color-warning"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-error"></div>
+                  <figcaption>
+                    <strong>Error</strong>
+                    <span class="text-text-muted">Fehlerstatus</span>
+                    <code class="sg-code">--color-error: <span data-token-value="--color-error"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-focus"></div>
+                  <figcaption>
+                    <strong>Focus</strong>
+                    <span class="text-text-muted">Fokusring</span>
+                    <code class="sg-code">--color-focus: <span data-token-value="--color-focus"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="typografie" aria-labelledby="typography-title">
+        <div class="container-site container-site-wide flex flex-col gap-stack">
+          <div class="section-header mb-0">
+            <p class="eyebrow">Tokens</p>
+            <h2 id="typography-title">Typografie</h2>
+            <p class="lead">Schriftgrößen skalieren fließend mit <code class="sg-code">clamp()</code> zwischen Mobile und Desktop.</p>
+          </div>
+
+          <div class="grid gap-grid md:grid-cols-2">
+            <div class="sg-panel flex flex-col gap-2">
+              <p class="sg-code">--font-family-display</p>
+              <p class="h3 font-display">Display: Aa Bb Cc 123</p>
+              <p class="sg-code" data-token-value="--font-family-display"></p>
+            </div>
+            <div class="sg-panel flex flex-col gap-2">
+              <p class="sg-code">--font-family-sans</p>
+              <p class="text-body-lg font-sans">Sans: Aa Bb Cc 123 – Äöü ß</p>
+              <p class="sg-code" data-token-value="--font-family-sans"></p>
+            </div>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-6">
+            <h3 class="h5">Headlines</h3>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">.text-display</p>
+              <p class="h1 text-display">Display Headline</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h1 / .h1 · --text-h1</p>
+              <p class="h1">Headline H1 für die Hauptaussage</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h2 / .h2 · --text-h2</p>
+              <p class="h2">Headline H2 für Abschnitte</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h3 / .h3 · --text-h3</p>
+              <p class="h3">Headline H3 für Unterabschnitte</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h4 / .h4 · --text-h4</p>
+              <p class="h4">Headline H4 für Cards und Teaser</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h5 / .h5 · --text-h5</p>
+              <p class="h5">Headline H5 für kleinere Elemente</p>
+            </div>
+            <div class="flex flex-col gap-1">
+              <p class="sg-code">h6 / .h6 · --text-h6</p>
+              <p class="h6">Headline H6 für Zwischenzeilen</p>
+            </div>
+          </div>
+
+          <div class="grid gap-grid lg:grid-cols-2">
+            <div class="sg-panel flex flex-col gap-6">
+              <h3 class="h5">Fließtext</h3>
+              <div class="flex flex-col gap-1">
+                <p class="sg-code">.lead · --text-body-lg</p>
+                <p class="lead">Einleitender Text für Abschnitte, etwas größer und in gedämpfter Farbe.</p>
+              </div>
+              <div class="flex flex-col gap-1">
+                <p class="sg-code">.text-body-lg</p>
+                <p class="text-body-lg">Großer Fließtext für hervorgehobene Absätze und kurze Erklärungen.</p>
+              </div>
+              <div class="flex flex-col gap-1">
+                <p class="sg-code">.text-body (Standard)</p>
+                <p>Standard-Fließtext für längere Inhalte. Die Zeilenlänge sollte etwa 60 bis 75 Zeichen nicht überschreiten, damit Texte gut lesbar bleiben.</p>
+              </div>
+              <div class="flex flex-col gap-1">
+                <p class="sg-code">.text-body-sm</p>
+                <p class="text-body-sm">Kleiner Fließtext für Hinweise, Metainformationen und Formularhilfen.</p>
+              </div>
+              <div class="flex flex-col gap-1">
+                <p class="sg-code">.text-caption · .eyebrow</p>
+                <p class="text-caption">Bildunterschrift oder rechtlicher Hinweis</p>
+                <p class="eyebrow">Eyebrow</p>
+              </div>
+            </div>
+
+            <div class="sg-panel flex flex-col gap-6">
+              <h3 class="h5">Links und Gewichte</h3>
+              <p>Ein <a href="#typografie">Textlink im Fließtext</a> ist unterstrichen und verändert beim Hover Farbe und Linienstärke. Per Tastatur erhält er einen sichtbaren Fokusring.</p>
+              <p class="text-body-sm">Kleiner Text mit <a href="#typografie">Link</a>.</p>
+              <ul class="flex flex-col gap-1" role="list">
+                <li class="font-regular">Regular · --font-weight-regular</li>
+                <li class="font-medium">Medium · --font-weight-medium</li>
+                <li class="font-semibold">Semibold · --font-weight-semibold</li>
+                <li class="font-bold">Bold · --font-weight-bold</li>
+              </ul>
+              <ul class="flex flex-col gap-1" role="list">
+                <li class="tracking-tight">Tracking tight · --tracking-tight</li>
+                <li class="tracking-normal">Tracking normal · --tracking-normal</li>
+                <li class="tracking-wide uppercase">Tracking wide · --tracking-wide</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface" id="buttons" aria-labelledby="buttons-title">
+        <div class="container-site container-site-wide">
+          <div class="section-header">
+            <p class="eyebrow">Komponenten</p>
+            <h2 id="buttons-title">Buttons</h2>
+            <p class="lead">Zustände werden für die Kontrolle mit <code class="sg-code">.is-hover</code>, <code class="sg-code">.is-focus</code> und <code class="sg-code">.is-active</code> statisch dargestellt. Die Buttons in der ersten Spalte reagieren echt auf Maus und Tastatur.</p>
+          </div>
+
+          <div class="flex flex-col gap-6">
+            <div class="sg-panel flex flex-col gap-4">
+              <h3 class="h5">Primary · <code class="sg-code">.button.button-primary</code></h3>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="button button-primary" type="button">Standard</button>
+                <button class="button button-primary is-hover" type="button">Hover</button>
+                <button class="button button-primary is-focus" type="button">Focus</button>
+                <button class="button button-primary is-active" type="button">Active</button>
+                <button class="button button-primary" type="button" disabled>Disabled</button>
+                <button class="button button-primary" type="button" aria-disabled="true" data-loading>
+                  <span class="button-spinner" aria-hidden="true"></span>
+                  <span>Loading</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="sg-panel flex flex-col gap-4">
+              <h3 class="h5">Secondary · <code class="sg-code">.button.button-secondary</code></h3>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="button button-secondary" type="button">Standard</button>
+                <button class="button button-secondary is-hover" type="button">Hover</button>
+                <button class="button button-secondary is-focus" type="button">Focus</button>
+                <button class="button button-secondary is-active" type="button">Active</button>
+                <button class="button button-secondary" type="button" disabled>Disabled</button>
+              </div>
+            </div>
+
+            <div class="sg-panel flex flex-col gap-4">
+              <h3 class="h5">Tertiary / Text · <code class="sg-code">.button.button-tertiary</code></h3>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="button button-tertiary" type="button">Standard</button>
+                <button class="button button-tertiary is-hover" type="button">Hover</button>
+                <button class="button button-tertiary is-focus" type="button">Focus</button>
+                <button class="button button-tertiary is-active" type="button">Active</button>
+                <button class="button button-tertiary" type="button" disabled>Disabled</button>
+              </div>
+            </div>
+
+            <div class="sg-panel flex flex-col gap-4">
+              <h3 class="h5">Größen und Breite</h3>
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="button button-primary button-sm" type="button">Small · .button-sm</button>
+                <button class="button button-primary" type="button">Default</button>
+                <button class="button button-primary button-lg" type="button">Large · .button-lg</button>
+              </div>
+              <button class="button button-secondary button-block" type="button">Volle Breite · .button-block</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="komponenten" aria-labelledby="components-title">
+        <div class="container-site container-site-wide flex flex-col gap-stack">
+          <div class="section-header mb-0">
+            <p class="eyebrow">Komponenten</p>
+            <h2 id="components-title">Cards, Badges und Hinweise</h2>
+          </div>
+
+          <ul class="grid gap-grid md:grid-cols-3" role="list">
+            <li>
+              <article class="card">
+                <span class="card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg>
+                </span>
+                <h3 class="card-title">Card Standard</h3>
+                <p class="card-text"><code class="sg-code">.card</code> mit <code class="sg-code">.card-icon</code>, <code class="sg-code">.card-title</code> und <code class="sg-code">.card-text</code>.</p>
+              </article>
+            </li>
+            <li>
+              <article class="card card-elevated">
+                <p class="badge badge-primary">Neu</p>
+                <h3 class="card-title">Card Elevated</h3>
+                <p class="card-text">Modifier <code class="sg-code">.card-elevated</code> für hervorgehobene Inhalte wie Formulare.</p>
+              </article>
+            </li>
+            <li>
+              <article class="card">
+                <h3 class="card-title">Card mit Aktion</h3>
+                <p class="card-text">Cards können Buttons oder Links enthalten. Die Höhe passt sich dem Inhalt an.</p>
+                <a class="button button-tertiary mt-auto self-start px-0" href="#komponenten">Mehr erfahren</a>
+              </article>
+            </li>
+          </ul>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Badges · <code class="sg-code">.badge</code></h3>
+            <div class="flex flex-wrap gap-3">
+              <span class="badge">Neutral</span>
+              <span class="badge badge-primary">Primary</span>
+              <span class="badge badge-accent">Accent</span>
+              <span class="badge badge-success">Erfolg</span>
+              <span class="badge badge-warning">Hinweis</span>
+              <span class="badge badge-error">Fehler</span>
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="notice notice-info">
+              <p class="notice-title">Information · .notice-info</p>
+              <p>Neutrale Hinweise, zum Beispiel zum Teilnahmeschluss.</p>
+            </div>
+            <div class="notice notice-success">
+              <p class="notice-title">Erfolg · .notice-success</p>
+              <p>Ihre Angaben wurden erfolgreich gespeichert.</p>
+            </div>
+            <div class="notice notice-warning">
+              <p class="notice-title">Hinweis · .notice-warning</p>
+              <p>Die Teilnahmephase endet in Kürze.</p>
+            </div>
+            <div class="notice notice-error">
+              <p class="notice-title">Fehler · .notice-error</p>
+              <p>Bitte prüfen Sie die markierten Felder.</p>
+            </div>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Accordion · <code class="sg-code">[data-accordion]</code></h3>
+            <div class="accordion" data-accordion>
+              <details class="accordion-item" open>
+                <summary class="accordion-trigger">
+                  <span>Geöffneter Eintrag</span>
+                  <span class="accordion-icon" aria-hidden="true"></span>
+                </summary>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <p>Basis ist das native details-Element. Ohne JavaScript bleibt das Accordion voll bedienbar.</p>
+                  </div>
+                </div>
+              </details>
+              <details class="accordion-item">
+                <summary class="accordion-trigger">
+                  <span>Tastaturbedienung</span>
+                  <span class="accordion-icon" aria-hidden="true"></span>
+                </summary>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <p>Enter und Leertaste öffnen und schließen. Pfeiltasten, Pos1 und Ende springen zwischen den Einträgen.</p>
+                  </div>
+                </div>
+              </details>
+              <details class="accordion-item">
+                <summary class="accordion-trigger">
+                  <span>Nur ein Eintrag geöffnet</span>
+                  <span class="accordion-icon" aria-hidden="true"></span>
+                </summary>
+                <div class="accordion-content">
+                  <div class="accordion-body">
+                    <p>Mit <code class="sg-code">data-accordion="single"</code> schließen sich andere Einträge automatisch.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-surface" id="formulare" aria-labelledby="forms-title">
+        <div class="container-site container-site-wide">
+          <div class="section-header">
+            <p class="eyebrow">Komponenten</p>
+            <h2 id="forms-title">Formulare</h2>
+            <p class="lead">Fehler werden über <code class="sg-code">aria-invalid</code> markiert und per <code class="sg-code">aria-describedby</code> mit der Fehlermeldung verknüpft.</p>
+          </div>
+
+          <div class="grid gap-grid lg:grid-cols-2">
+            <div class="sg-panel flex flex-col gap-6">
+              <h3 class="h5">Textfelder</h3>
+              <div class="form-group">
+                <label class="form-label" for="sg-default">Standard</label>
+                <input class="form-control" id="sg-default" type="text" placeholder="Platzhaltertext" aria-describedby="sg-default-hint">
+                <p class="form-hint" id="sg-default-hint">Hilfetext unter dem Feld · .form-hint</p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-hover">Hover · .is-hover</label>
+                <input class="form-control is-hover" id="sg-hover" type="text" value="Eingabe">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-focus">Focus · .is-focus</label>
+                <input class="form-control is-focus" id="sg-focus" type="text" value="Eingabe">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-error">Fehler · aria-invalid="true"</label>
+                <input class="form-control" id="sg-error" type="email" value="name@beispiel" aria-invalid="true" aria-describedby="sg-error-error">
+                <p class="form-error" id="sg-error-error">Bitte geben Sie eine gültige E-Mail-Adresse ein, zum Beispiel name@beispiel.de.</p>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-success">Erfolg · .is-success</label>
+                <input class="form-control is-success" id="sg-success" type="email" value="name@beispiel.de">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-disabled">Disabled</label>
+                <input class="form-control" id="sg-disabled" type="text" value="Nicht bearbeitbar" disabled>
+              </div>
+            </div>
+
+            <div class="sg-panel flex flex-col gap-6">
+              <h3 class="h5">Auswahl und Mehrzeilig</h3>
+              <div class="form-group">
+                <label class="form-label" for="sg-select">Select · .form-select</label>
+                <div class="form-select">
+                  <select class="form-control" id="sg-select">
+                    <option value="">Bitte auswählen</option>
+                    <option value="a">Option A</option>
+                    <option value="b">Option B</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sg-textarea">Textarea</label>
+                <textarea class="form-control" id="sg-textarea" rows="4" data-lenis-prevent>Mehrzeilige Eingabe für Nachrichten oder Anmerkungen.</textarea>
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" id="sg-checkbox" type="checkbox" checked>
+                  <label class="form-check-label" for="sg-checkbox">Checkbox · .form-check</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" id="sg-checkbox-error" type="checkbox" aria-invalid="true" aria-describedby="sg-checkbox-error-error">
+                  <label class="form-check-label" for="sg-checkbox-error">Checkbox im Fehlerzustand</label>
+                </div>
+                <p class="form-error" id="sg-checkbox-error-error">Bitte bestätigen Sie dieses Feld.</p>
+              </div>
+              <fieldset class="form-fieldset">
+                <legend class="form-label">Radio Buttons · .form-fieldset</legend>
+                <div class="form-check">
+                  <input class="form-check-input" id="sg-radio-a" type="radio" name="sg-radio" checked>
+                  <label class="form-check-label" for="sg-radio-a">Erste Option</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="sg-radio-b" type="radio" name="sg-radio">
+                  <label class="form-check-label" for="sg-radio-b">Zweite Option</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" id="sg-radio-c" type="radio" name="sg-radio" disabled>
+                  <label class="form-check-label text-text-muted" for="sg-radio-c">Deaktivierte Option</label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="layout" aria-labelledby="layout-title">
+        <div class="container-site container-site-wide flex flex-col gap-stack">
+          <div class="section-header mb-0">
+            <p class="eyebrow">Layout</p>
+            <h2 id="layout-title">Container, Grid und Spacing</h2>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Container</h3>
+            <div class="sg-container-demo"><span class="container-site container-site-narrow">.container-site-narrow · --container-text</span></div>
+            <div class="sg-container-demo"><span class="container-site">.container-site · --container-content</span></div>
+            <div class="sg-container-demo"><span class="container-site container-site-wide">.container-site-wide · --container-wide</span></div>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Grid · <code class="sg-code">grid gap-grid</code></h3>
+            <div class="grid gap-grid sm:grid-cols-2">
+              <div class="sg-box">1/2</div>
+              <div class="sg-box">1/2</div>
+            </div>
+            <div class="grid gap-grid md:grid-cols-3">
+              <div class="sg-box">1/3</div>
+              <div class="sg-box">1/3</div>
+              <div class="sg-box">1/3</div>
+            </div>
+            <div class="grid grid-cols-2 gap-grid lg:grid-cols-4">
+              <div class="sg-box">1/4</div>
+              <div class="sg-box">1/4</div>
+              <div class="sg-box">1/4</div>
+              <div class="sg-box">1/4</div>
+            </div>
+            <div class="grid gap-grid lg:grid-cols-12">
+              <div class="sg-box lg:col-span-5">5/12</div>
+              <div class="sg-box lg:col-span-7">7/12</div>
+            </div>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Spacing Tokens</h3>
+            <dl class="grid gap-4">
+              <div class="grid items-center gap-2 sm:grid-cols-[14rem_1fr]">
+                <dt class="sg-code">--spacing-gutter: <span data-token-value="--spacing-gutter"></span></dt>
+                <dd><div class="sg-bar w-gutter"></div></dd>
+              </div>
+              <div class="grid items-center gap-2 sm:grid-cols-[14rem_1fr]">
+                <dt class="sg-code">--spacing-grid: <span data-token-value="--spacing-grid"></span></dt>
+                <dd><div class="sg-bar w-grid"></div></dd>
+              </div>
+              <div class="grid items-center gap-2 sm:grid-cols-[14rem_1fr]">
+                <dt class="sg-code">--spacing-stack: <span data-token-value="--spacing-stack"></span></dt>
+                <dd><div class="sg-bar w-stack"></div></dd>
+              </div>
+              <div class="grid items-center gap-2 sm:grid-cols-[14rem_1fr]">
+                <dt class="sg-code">--spacing-section: <span data-token-value="--spacing-section"></span></dt>
+                <dd><div class="sg-bar w-section"></div></dd>
+              </div>
+              <div class="grid items-center gap-2 sm:grid-cols-[14rem_1fr]">
+                <dt class="sg-code">Tailwind-Basis --spacing: <span data-token-value="--spacing"></span></dt>
+                <dd class="flex flex-wrap items-end gap-2">
+                  <div class="sg-bar w-2"></div>
+                  <div class="sg-bar w-4"></div>
+                  <div class="sg-bar w-8"></div>
+                  <div class="sg-bar w-12"></div>
+                  <div class="sg-bar w-16"></div>
+                  <div class="sg-bar w-24"></div>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="grid gap-grid md:grid-cols-3">
+            <div class="sg-panel flex flex-col gap-3">
+              <h3 class="h6">Radien</h3>
+              <div class="flex flex-wrap gap-2">
+                <div class="sg-box size-14 rounded-sm">sm</div>
+                <div class="sg-box size-14 rounded-md">md</div>
+                <div class="sg-box size-14 rounded-lg">lg</div>
+                <div class="sg-box size-14 rounded-xl">xl</div>
+                <div class="sg-box size-14 rounded-pill">pill</div>
+              </div>
+            </div>
+            <div class="sg-panel flex flex-col gap-3">
+              <h3 class="h6">Schatten</h3>
+              <div class="flex flex-wrap gap-4">
+                <div class="sg-box size-16 bg-surface shadow-sm">sm</div>
+                <div class="sg-box size-16 bg-surface shadow-md">md</div>
+                <div class="sg-box size-16 bg-surface shadow-lg">lg</div>
+              </div>
+            </div>
+            <div class="sg-panel flex flex-col gap-3">
+              <h3 class="h6">Breakpoints</h3>
+              <ul class="flex flex-col gap-1 text-body-sm" role="list">
+                <li><code class="sg-code">sm: <span data-token-value="--breakpoint-sm"></span></code></li>
+                <li><code class="sg-code">md: <span data-token-value="--breakpoint-md"></span></code></li>
+                <li><code class="sg-code">lg: <span data-token-value="--breakpoint-lg"></span></code></li>
+                <li><code class="sg-code">xl: <span data-token-value="--breakpoint-xl"></span></code></li>
+                <li><code class="sg-code">2xl: <span data-token-value="--breakpoint-2xl"></span></code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-inverse" aria-labelledby="inverse-title">
+        <div class="container-site container-site-wide">
+          <div class="section-header">
+            <p class="eyebrow">Section-Layout</p>
+            <h2 id="inverse-title">Dunkle Section · .section-inverse</h2>
+            <p class="lead">Sections lassen sich über Modifier einfärben: <code>.section-surface</code>, <code>.section-muted</code> und <code>.section-inverse</code>. Der Fokusring wird auf dunklem Grund automatisch aufgehellt.</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a class="button button-primary" href="#layout">Primary auf Dunkel</a>
+            <a class="button button-secondary" href="#layout">Secondary auf Dunkel</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="animation" aria-labelledby="animation-title">
+        <div class="container-site container-site-wide flex flex-col gap-stack">
+          <div class="section-header mb-0">
+            <p class="eyebrow">Motion</p>
+            <h2 id="animation-title">Easing und Animationen</h2>
+            <p class="lead">Werte aus <code class="sg-code">src/js/config.js</code>. Bei <code class="sg-code">prefers-reduced-motion: reduce</code> entfallen X/Y-, Scale- und Parallax-Bewegungen; Reveals bleiben als kurze Opacity-Fades. Die Easing-Demo springt ohne Bewegung an ihr Ziel.</p>
+          </div>
+
+          <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="card">
+              <dt class="text-body-sm text-text-muted">Dauer (s)</dt>
+              <dd class="h4" data-config-value="animation.duration"></dd>
+            </div>
+            <div class="card">
+              <dt class="text-body-sm text-text-muted">Easing</dt>
+              <dd class="h4" data-config-value="animation.ease"></dd>
+            </div>
+            <div class="card">
+              <dt class="text-body-sm text-text-muted">Stagger (s)</dt>
+              <dd class="h4" data-config-value="animation.stagger"></dd>
+            </div>
+            <div class="card">
+              <dt class="text-body-sm text-text-muted">ScrollTrigger Start</dt>
+              <dd class="h4" data-config-value="animation.scrollTriggerStart"></dd>
+            </div>
+          </dl>
+
+          <div class="sg-panel flex flex-col gap-4" data-ease-demo>
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <h3 class="h5">GSAP Easing im Vergleich</h3>
+              <button class="button button-primary button-sm" type="button" data-ease-play>Easing abspielen</button>
+            </div>
+            <div class="grid items-center gap-x-4 gap-y-2 sm:grid-cols-[10rem_1fr]">
+              <p class="sg-code">config (<span data-config-value="animation.ease"></span>)</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="config"></span></div></div>
+              <p class="sg-code">power2.out</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="power2.out"></span></div></div>
+              <p class="sg-code">power3.inOut</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="power3.inOut"></span></div></div>
+              <p class="sg-code">expo.out</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="expo.out"></span></div></div>
+              <p class="sg-code">sine.inOut</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="sine.inOut"></span></div></div>
+              <p class="sg-code">none (linear)</p>
+              <div class="sg-track"><div class="sg-track-inner"><span class="sg-marker" data-ease="none"></span></div></div>
+            </div>
+          </div>
+
+          <div class="sg-panel flex flex-col gap-4">
+            <h3 class="h5">Scroll-Reveals · <code class="sg-code">data-animate</code></h3>
+            <div class="grid gap-grid sm:grid-cols-3">
+              <div class="sg-box min-h-28" data-animate="fade-up">fade-up</div>
+              <div class="sg-box min-h-28" data-animate="fade-in">fade-in</div>
+              <div class="sg-box min-h-28" data-animate="scale-in">scale-in</div>
+            </div>
+            <div class="grid grid-cols-2 gap-grid md:grid-cols-4" data-animate="stagger">
+              <div class="sg-box">stagger 1</div>
+              <div class="sg-box">stagger 2</div>
+              <div class="sg-box">stagger 3</div>
+              <div class="sg-box">stagger 4</div>
+            </div>
+            <div class="media-frame aspect-2/1">
+              <img src="/assets/images/process-visual.svg" alt="" width="1200" height="600" loading="lazy" decoding="async" data-parallax="0.06">
+            </div>
+            <p class="text-body-sm text-text-muted">Das Bild oben nutzt <code class="sg-code">data-parallax="0.06"</code>. Parallax ist unterhalb des Mobile-Breakpoints deaktiviert.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-site container-site-wide flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <nav aria-label="Seiten des Templates">
+          <ul class="footer-links" role="list">
+            <li><a href="index.html">Landingpage</a></li>
+            <li><a href="teilnahme.html">Teilnahme bestätigt</a></li>
+            <li><a href="teilnahme-ende.html">Teilnahme beendet</a></li>
+            <li><a href="datenschutz.html">Datenschutz</a></li>
+            <li><a href="impressum.html">Impressum</a></li>
+          </ul>
+        </nav>
+        <p class="text-body-sm">© <span data-current-year>2026</span> Markenname</p>
+      </div>
+    </footer>
+  </body>
+</html>

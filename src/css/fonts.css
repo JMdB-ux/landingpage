@@ -1,0 +1,16 @@
+/*
+ * Local web fonts
+ *
+ * Extension point: place WOFF2 files in public/assets/fonts/ and declare them here, e.g.
+ *
+ * @font-face {
+ *   font-family: "Brand Sans";
+ *   src: url("/assets/fonts/brand-sans-regular.woff2") format("woff2");
+ *   font-weight: 400;
+ *   font-style: normal;
+ *   font-display: swap;
+ * }
+ *
+ * Then prepend the family to --font-family-sans or --font-family-display in tokens.css:
+ * --font-family-sans: "Brand Sans", ui-sans-serif, system-ui, sans-serif;
+ */
