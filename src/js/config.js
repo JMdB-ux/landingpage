@@ -26,6 +26,19 @@ export const config = {
     defaultStrength: 0.06,
   },
 
+  layerParallax: {
+    enabled: true,
+    // yPercent travel per layer (front layers use full value)
+    strength: 10,
+    // degrees of rotation per layer
+    rotation: 4,
+    // subtle horizontal drift (xPercent)
+    drift: 3,
+    scrub: 0.75,
+    // Scale of the effect below the mobile breakpoint
+    mobileFactor: 0.45,
+  },
+
   lenis: {
     duration: 1.1,
     easing: (t) => Math.min(1, 1.001 - 2 ** (-10 * t)),
@@ -49,4 +62,7 @@ export const config = {
     endpoint: '',
     successUrl: 'teilnahme.html',
   },
+
+  shopUrl: 'https://www.erdinger-alkoholfrei.de/',
+
 };

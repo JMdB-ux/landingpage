@@ -10,6 +10,7 @@ const pages = {
   participation: 'teilnahme.html',
   participationClosed: 'teilnahme-ende.html',
   styleguide: 'styleguide.html',
+  terms: 'teilnahmebedingungen.html',
   privacy: 'datenschutz.html',
   imprint: 'impressum.html',
 };

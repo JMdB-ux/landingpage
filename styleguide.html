@@ -3,11 +3,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Styleguide | Landingpage Template</title>
+    <title>Styleguide | ERDINGER Alkoholfrei</title>
     <meta name="description" content="Visuelle Kontrollseite für Design Tokens und Komponenten.">
     <meta name="robots" content="noindex">
-    <meta name="theme-color" content="#2445c4">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="#00a7ee">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="ERDINGER Alkoholfrei">
+    <meta property="og:title" content="Styleguide | ERDINGER Alkoholfrei">
+    <meta property="og:description" content="Visuelle Kontrollseite für Design Tokens und Komponenten.">
+    <meta property="og:image" content="/assets/images/header-image.jpg">
+    <meta property="og:image:alt" content="Läuferinnen und Läufer bei einem Stadtmarathon">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Styleguide | ERDINGER Alkoholfrei">
+    <meta name="twitter:description" content="Visuelle Kontrollseite für Design Tokens und Komponenten.">
+    <meta name="twitter:image" content="/assets/images/header-image.jpg">
+    <meta name="twitter:image:alt" content="Läuferinnen und Läufer bei einem Stadtmarathon">
+    <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+    <link href="/assets/images/webclip.png" rel="apple-touch-icon">
     <link rel="stylesheet" href="/src/css/main.css">
     <link rel="stylesheet" href="/src/css/styleguide.css">
     <script type="module" src="/src/js/main.js"></script>
@@ -18,8 +31,8 @@
 
     <header class="site-header" data-site-header>
       <div class="container-site container-site-wide site-header-inner">
-        <a class="site-logo" href="index.html">
-          <img src="/assets/images/logo-placeholder.svg" alt="Markenname – zur Startseite" width="160" height="32">
+        <a class="site-logo" href="index.html" aria-label="ERDINGER Alkoholfrei – zur Startseite">
+          <img src="/assets/images/ERDINGER-Alkoholfrei-Logo.svg" alt="" width="200" height="66">
         </a>
 
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="styleguide-nav" aria-label="Menü öffnen" data-nav-toggle>
@@ -169,6 +182,26 @@
                     <strong>Surface Muted</strong>
                     <span class="text-text-muted">Gedämpfte Flächen</span>
                     <code class="sg-code">--color-surface-muted: <span data-token-value="--color-surface-muted"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-input"></div>
+                  <figcaption>
+                    <strong>Input</strong>
+                    <span class="text-text-muted">Formularfelder</span>
+                    <code class="sg-code">--color-input: <span data-token-value="--color-input"></span></code>
+                  </figcaption>
+                </figure>
+              </li>
+              <li>
+                <figure class="sg-swatch">
+                  <div class="sg-swatch-color bg-on-input"></div>
+                  <figcaption>
+                    <strong>On Input</strong>
+                    <span class="text-text-muted">Text in Formularfeldern</span>
+                    <code class="sg-code">--color-on-input: <span data-token-value="--color-on-input"></span></code>
                   </figcaption>
                 </figure>
               </li>
@@ -340,10 +373,9 @@
               <p>Ein <a href="#typografie">Textlink im Fließtext</a> ist unterstrichen und verändert beim Hover Farbe und Linienstärke. Per Tastatur erhält er einen sichtbaren Fokusring.</p>
               <p class="text-body-sm">Kleiner Text mit <a href="#typografie">Link</a>.</p>
               <ul class="flex flex-col gap-1" role="list">
-                <li class="font-regular">Regular · --font-weight-regular</li>
-                <li class="font-medium">Medium · --font-weight-medium</li>
                 <li class="font-semibold">Semibold · --font-weight-semibold</li>
                 <li class="font-bold">Bold · --font-weight-bold</li>
+                <li class="font-display font-black italic">Black Italic · --font-weight-black</li>
               </ul>
               <ul class="flex flex-col gap-1" role="list">
                 <li class="tracking-tight">Tracking tight · --tracking-tight</li>
@@ -531,7 +563,7 @@
             <div class="sg-panel flex flex-col gap-6">
               <h3 class="h5">Textfelder</h3>
               <div class="form-group">
-                <label class="form-label" for="sg-default">Standard</label>
+                <label class="form-label" for="sg-default">Vorname <span class="form-required" aria-hidden="true">*</span></label>
                 <input class="form-control" id="sg-default" type="text" placeholder="Platzhaltertext" aria-describedby="sg-default-hint">
                 <p class="form-hint" id="sg-default-hint">Hilfetext unter dem Feld · .form-hint</p>
               </div>
@@ -602,6 +634,47 @@
                   <label class="form-check-label text-text-muted" for="sg-radio-c">Deaktivierte Option</label>
                 </div>
               </fieldset>
+            </div>
+          </div>
+
+          <div class="sg-panel mt-8 flex flex-col gap-4">
+            <h3 class="h5">Multiselect Card · <code class="sg-code">.multiselect-card</code></h3>
+            <p class="text-body-sm text-text-muted">Zustände: Standard, Hover (<code class="sg-code">.is-hover</code>) und Selected (<code class="sg-code">.is-selected</code>). In Formularen steuert ein verstecktes Checkbox-Input den Selected-Zustand.</p>
+            <div class="multiselect-grid max-w-3xl">
+              <label class="multiselect-card">
+                <input class="sr-only" type="checkbox" name="sg-marathons" value="hannover">
+                <span class="multiselect-card-badge" aria-hidden="true">6x</span>
+                <span class="multiselect-card-body">
+                  <span class="multiselect-card-title">Hannover</span>
+                  <span class="multiselect-card-meta">
+                    <span>11.04.2027</span>
+                    <span>Halbmarathon</span>
+                  </span>
+                </span>
+                <span class="multiselect-card-indicator" aria-hidden="true"></span>
+              </label>
+              <label class="multiselect-card is-hover">
+                <span class="multiselect-card-badge" aria-hidden="true">6x</span>
+                <span class="multiselect-card-body">
+                  <span class="multiselect-card-title">Hamburg</span>
+                  <span class="multiselect-card-meta">
+                    <span>11.04.2027</span>
+                    <span>Halbmarathon</span>
+                  </span>
+                </span>
+                <span class="multiselect-card-indicator" aria-hidden="true"></span>
+              </label>
+              <label class="multiselect-card is-selected">
+                <span class="multiselect-card-badge" aria-hidden="true">6x</span>
+                <span class="multiselect-card-body">
+                  <span class="multiselect-card-title">Berlin</span>
+                  <span class="multiselect-card-meta">
+                    <span>11.04.2027</span>
+                    <span>Halbmarathon</span>
+                  </span>
+                </span>
+                <span class="multiselect-card-indicator" aria-hidden="true"></span>
+              </label>
             </div>
           </div>
         </div>
@@ -801,11 +874,12 @@
             <li><a href="index.html">Landingpage</a></li>
             <li><a href="teilnahme.html">Teilnahme bestätigt</a></li>
             <li><a href="teilnahme-ende.html">Teilnahme beendet</a></li>
-            <li><a href="datenschutz.html">Datenschutz</a></li>
-            <li><a href="impressum.html">Impressum</a></li>
+            <li><a href="teilnahmebedingungen.html">Teilnahmebedingungen</a></li>
+            <li><a href="https://erdinger.de/de-DE/datenschutz" target="_blank" rel="noopener">Datenschutz<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
+            <li><a href="https://erdinger.de/de-DE/impressum" target="_blank" rel="noopener">Impressum<span class="sr-only"> (öffnet in neuem Tab)</span></a></li>
           </ul>
         </nav>
-        <p class="text-body-sm">© <span data-current-year>2026</span> Markenname</p>
+        <p class="text-body-sm">© <span data-current-year>2026</span> ERDINGER Alkoholfrei</p>
       </div>
     </footer>
   </body>

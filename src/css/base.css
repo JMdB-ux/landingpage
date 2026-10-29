@@ -1,6 +1,8 @@
 @layer base {
   html {
-    scroll-padding-top: calc(var(--header-height) + 1rem);
+    color-scheme: dark;
+    overflow-x: clip;
+    scroll-padding-top: 1rem;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -19,6 +21,7 @@
     color: var(--color-text);
     font-family: var(--font-family-sans);
     font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
     line-height: var(--leading-normal);
     overflow-wrap: break-word;
     text-rendering: optimizeLegibility;
@@ -28,11 +31,20 @@
   /* .h1–.h6 apply heading styles independently of the document outline. */
   :is(h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6) {
     font-family: var(--font-family-display);
-    font-weight: var(--font-weight-bold);
+    font-style: italic;
+    font-weight: var(--font-weight-black);
     letter-spacing: var(--tracking-tight);
     text-wrap: balance;
     overflow-wrap: break-word;
-    hyphens: auto;
+  }
+
+  h1,
+  .h1,
+  h2,
+  .h2,
+  .text-display {
+    text-transform: uppercase;
+    hyphens: none;
   }
 
   h1,

@@ -1,6 +1,7 @@
 import { gsap, ScrollTrigger } from './gsap.js';
 import { config } from './config.js';
 import { allowMotionQuery, maxWidthQuery, reducedMotionQuery } from './media.js';
+import { initLayerParallax } from './layer-parallax.js';
 
 /*
  * Data attribute API:
@@ -55,9 +56,18 @@ function initReveals(settings) {
   });
 }
 
+function visibleChildren(group) {
+  return gsap.utils.toArray(group.children).filter(
+    (child) => getComputedStyle(child).display !== 'none',
+  );
+}
+
 function initStaggers(settings) {
   gsap.utils.toArray('[data-animate="stagger"]').forEach((group) => {
-    reveal(group.children, group.dataset.staggerType || 'fade-up', settings, group, {
+    const children = visibleChildren(group);
+    if (!children.length) return;
+
+    reveal(children, group.dataset.staggerType || 'fade-up', settings, group, {
       stagger: settings.stagger,
       delay: Number(group.dataset.delay) || 0,
     });
@@ -66,7 +76,9 @@ function initStaggers(settings) {
 
 function initIntros(settings) {
   gsap.utils.toArray('[data-intro]').forEach((intro) => {
-    const items = intro.querySelectorAll('[data-intro-item]');
+    const items = gsap.utils.toArray(intro.querySelectorAll('[data-intro-item]')).filter(
+      (item) => getComputedStyle(item).display !== 'none',
+    );
     if (!items.length) return;
 
     gsap.fromTo(items, getFromVars('fade-up', settings), {
@@ -154,6 +166,8 @@ export function initAnimations() {
       if (config.parallax.enabled && !mobile) {
         initParallax();
       }
+
+      initLayerParallax(mobile);
     },
   );
 

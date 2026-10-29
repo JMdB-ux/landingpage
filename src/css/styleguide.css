@@ -44,7 +44,7 @@
   padding: 0.75rem;
   border-radius: var(--radius-sm);
   background-color: var(--color-primary-soft);
-  color: var(--color-primary-hover);
+  color: var(--color-primary);
   font-size: var(--text-body-sm);
   font-weight: var(--font-weight-semibold);
   text-align: center;

@@ -1,16 +1,23 @@
-/*
- * Local web fonts
- *
- * Extension point: place WOFF2 files in public/assets/fonts/ and declare them here, e.g.
- *
- * @font-face {
- *   font-family: "Brand Sans";
- *   src: url("/assets/fonts/brand-sans-regular.woff2") format("woff2");
- *   font-weight: 400;
- *   font-style: normal;
- *   font-display: swap;
- * }
- *
- * Then prepend the family to --font-family-sans or --font-family-display in tokens.css:
- * --font-family-sans: "Brand Sans", ui-sans-serif, system-ui, sans-serif;
- */
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/assets/fonts/BarlowCondensed-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/assets/fonts/OpenSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url("/assets/fonts/OpenSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
