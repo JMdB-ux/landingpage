@@ -385,7 +385,7 @@
     background-color: var(--color-primary);
     color: var(--color-on-primary);
     clip-path: polygon(0 0, 100% 0, calc(100% - var(--button-slant)) 100%, 0 100%);
-    padding-right: calc(1.5rem + 0.35rem);
+    padding-right: 2.5rem;
   }
 
   .button-primary:focus-visible,

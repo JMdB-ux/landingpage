@@ -1,8 +1,8 @@
-# Landingpage Template
+# ERDINGER Alkoholfrei Halbmarathon-Gewinnspiel 2027
 
-Wiederverwendbares Grundgerüst für statische, animierte Kampagnen-Landingpages, die aus Figma-Designs umgesetzt werden.
+Kampagnen-Landingpage für das Halbmarathon-Gewinnspiel von ERDINGER Alkoholfrei. Besucherinnen und Besucher können Starterplätze für Halbmarathons oder einen Gutschein für die Sportkollektion gewinnen. Die Website umfasst die Kampagnen-Landingpage, Teilnahme- und Statusseiten sowie die Teilnahmebedingungen.
 
-Das Template liefert semantisches HTML, ein tokenbasiertes Designsystem, Tailwind CSS für Layout, GSAP/ScrollTrigger für Motion und Lenis für Smooth Scroll. Es enthält bewusst wenig projektbezogene Logik: Texte, Farben, Schriften und Bilder werden pro Kampagne ersetzt, die Architektur bleibt gleich.
+Die Website ist eine statische Multi-Page-Anwendung mit semantischem HTML, tokenbasiertem CSS, Tailwind CSS, GSAP/ScrollTrigger und Lenis. Kampagnenbilder und lokale Schriften liegen unter `public/assets/`.
 
 ## Stack
 
@@ -37,9 +37,8 @@ Vite startet den lokalen Server und öffnet die Startseite. Weitere Seiten direk
 - `/` bzw. `/index.html`
 - `/teilnahme.html`
 - `/teilnahme-ende.html`
+- `/teilnahmebedingungen.html`
 - `/styleguide.html`
-- `/datenschutz.html`
-- `/impressum.html`
 
 ## Production Build
 
@@ -57,17 +56,15 @@ npm run preview
 ├── index.html                 Landingpage
 ├── teilnahme.html             Teilnahmebestätigung
 ├── teilnahme-ende.html        Beendete Teilnahmephase
+├── teilnahmebedingungen.html  Teilnahmebedingungen (Platzhalter)
 ├── styleguide.html            Visuelle Kontrolle des Designsystems
-├── datenschutz.html           Platzhalter Datenschutz
-├── impressum.html             Platzhalter Impressum
 ├── package.json
 ├── vite.config.js             Multi-Page-Build und Tailwind-Plugin
 ├── public/
-│   ├── favicon.svg
 │   └── assets/
-│       ├── images/            Bildplatzhalter
-│       ├── icons/             Exportierte Icons
-│       └── fonts/             Lokale Webfonts (WOFF2)
+│       ├── images/            Kampagnenbilder, Logos, Social-Icons und Favicons
+│       ├── icons/             Erweiterungspunkt für Icons
+│       └── fonts/             Lokale Webfonts (TTF)
 └── src/
     ├── css/
     │   ├── main.css           Einstieg: Tailwind, Tokens, Komponenten
@@ -83,6 +80,7 @@ npm run preview
         ├── gsap.js            Zentrale Plugin-Registrierung
         ├── media.js           Breakpoints und prefers-reduced-motion
         ├── animations.js      Data-Attribute für Reveals
+        ├── layer-parallax.js  Mehrschichtige Parallax-Animationen
         ├── smooth-scroll.js   Lenis + ScrollTrigger
         ├── navigation.js      Accessible Mobile-Navigation
         ├── accordion.js       details/summary mit optionaler Animation
@@ -133,18 +131,18 @@ Beispiel: Primary-Farbe aus Figma:
 --color-on-primary: #ffffff;
 ```
 
-## Lokale Fonts einbinden
+## Lokale Fonts
 
-1. WOFF2-Dateien nach `public/assets/fonts/` legen.
-2. In `src/css/fonts.css` ein `@font-face` ergänzen (`font-display: swap`).
-3. Die Familie in `tokens.css` vor die Systemstack setzen:
+Die Kampagne verwendet Open Sans in den Schriftschnitten 600 und 700 sowie Barlow Condensed in 900 Italic. Die TTF-Dateien liegen in `public/assets/fonts/` und sind in `src/css/fonts.css` eingebunden.
+
+Weitere Schriften nach `public/assets/fonts/` legen, in `src/css/fonts.css` per `@font-face` registrieren (`font-display: swap`) und die Familie in `tokens.css` vor die System-Fallbacks setzen:
 
 ```css
 --font-family-sans: "Brand Sans", ui-sans-serif, system-ui, sans-serif;
 --font-family-display: "Brand Display", var(--font-family-sans);
 ```
 
-Solange keine Dateien liegen, nutzt das Template Systemschriften.
+System-Fallbacks bleiben für nicht verfügbare oder nicht geladene Webfonts definiert.
 
 ## Animationen
 
@@ -159,6 +157,7 @@ Solange keine Dateien liegen, nutzt das Template Systemschriften.
 | `data-stagger-type="fade-in"` | Optionaler Effekt für Stagger-Kinder |
 | `data-intro` + `data-intro-item` | Intro beim Laden |
 | `data-parallax="0.06"` | Dezente Scroll-Verschiebung |
+| `.layer-stack` + `data-layer-*` | Mehrschichtige Verschiebung und Rotation, gesteuert in `src/js/layer-parallax.js` |
 | `data-delay="0.2"` | Zusätzliche Verzögerung in Sekunden |
 
 Ohne JavaScript bleiben Inhalte sichtbar. Motion folgt [GSAP Accessible Animation](https://gsap.com/resources/getting-started/accessibility/) über `gsap.matchMedia()`:
@@ -180,7 +179,7 @@ Einstellungen: `config.lenis` und `config.animation`.
 
 ## Formular und Backend
 
-Das Teilnahmeformular validiert ausschließlich clientseitig und speichert nichts in Local Storage, Session Storage oder Cookies.
+Das Teilnahmeformular validiert clientseitig und speichert nichts in Local Storage, Session Storage oder Cookies. Die Validierung prüft unter anderem Pflichtfelder, E-Mail, Postleitzahl, Mindestalter und die Auswahl von ein bis drei Marathons.
 
 Aktuell:
 
@@ -189,17 +188,9 @@ Aktuell:
 3. Formularstatus über `aria-live`
 4. bei Erfolg Weiterleitung nach `teilnahme.html`
 
-Die Übertragung ist in `src/js/participation-api.js` gekapselt:
+Die Übertragung ist in `src/js/participation-api.js` gekapselt. `config.form.endpoint` ist derzeit leer; deshalb werden keine Formulardaten übertragen. Nach erfolgreicher Client-Validierung zeigt das Formular trotzdem den Erfolgsstatus an und leitet zu `teilnahme.html` weiter.
 
-```js
-export async function submitParticipation(formData) {
-  // TODO: config.form.endpoint setzen und den echten fetch-Request anbinden.
-  if (!config.form.endpoint) return;
-  // ...
-}
-```
-
-**Eine echte serverseitige Validierung muss ergänzt werden.** Clientseitige Prüfungen sind nur UX. Ohne konfigurierten Endpunkt werden keine Daten gesendet.
+Vor einem Livegang müssen der echte Endpunkt und das Backend-Vertragsformat eingerichtet werden. Serverseitige Validierung ist zwingend; Client-Validierung dient ausschließlich der UX.
 
 ## Umsetzung aus Figma
 
@@ -237,7 +228,7 @@ export async function submitParticipation(formData) {
 <script type="module" src="/src/js/main.js"></script>
 ```
 
-3. Datei in `vite.config.js` registrieren:
+3. Datei in `vite.config.js` unter `pages` registrieren:
 
 ```js
 const pages = {
@@ -245,6 +236,7 @@ const pages = {
   participation: 'teilnahme.html',
   participationClosed: 'teilnahme-ende.html',
   styleguide: 'styleguide.html',
+  terms: 'teilnahmebedingungen.html',
   privacy: 'datenschutz.html',
   imprint: 'impressum.html',
   campaign: 'kampagne.html',
@@ -265,7 +257,7 @@ Bestehende Sektionen aus `index.html` kopieren und Texte, Bilder und Tokens anpa
 - Dekorative Bilder: `alt=""`. Inhaltliche Bilder: beschreibendes `alt`
 - Ohne JavaScript bleiben Inhalte lesbar; Navigation bleibt im Dokumentfluss
 
-`datenschutz.html` und `impressum.html` sind Platzhalter und müssen vor Veröffentlichung rechtlich ersetzt werden.
+`teilnahmebedingungen.html` enthält Platzhalter und muss vor Veröffentlichung durch rechtlich geprüfte Teilnahmebedingungen ersetzt werden. Datenschutz und Impressum sind in der Fußzeile mit den Seiten von ERDINGER Alkoholfrei verlinkt.
 
 ## Performance
 
@@ -284,12 +276,12 @@ Der Inhalt von `dist/` kann auf jedem Static Host liegen (Netlify, Vercel, GitHu
 - `vite.config.js` setzt `base: './'`, relative Pfade funktionieren in Unterordnern.
 - Kein Server-Rendering, kein Node-Prozess zur Laufzeit.
 - Formular-POST braucht einen eigenen Backend-Endpunkt; der Host für HTML/CSS/JS kann davon getrennt sein.
-- Vor Go-Live: `datenschutz.html`, `impressum.html`, Meta-Tags und das Favicon ersetzen.
+- Vor Go-Live: Teilnahmebedingungen rechtlich prüfen sowie Meta-Tags und Kampagnenmedien kontrollieren.
 
 ## Hinweise und Grenzen
 
-- Es gibt keinen echten API-Endpunkt. `config.form.endpoint` ist leer.
+- Es gibt keinen echten API-Endpunkt. `config.form.endpoint` ist leer; aktuell werden keine Teilnahmedaten übertragen.
 - Clientseitige Validierung ersetzt keine Serverprüfung.
-- Ohne JavaScript kann das Formular nicht zuverlässig an ein statisches `teilnahme.html` übermittelt werden.
-- Datenschutz- und Impressumstexte sind bewusst unvollständig.
+- Nach erfolgreicher Client-Validierung erfolgt die Weiterleitung nach `teilnahme.html`, auch wenn kein Endpunkt konfiguriert ist.
+- Die Seite `teilnahmebedingungen.html` enthält rechtliche Platzhalter.
 - Parallax ist unterhalb des `md`-Breakpoints ausgeschaltet.
