@@ -49,6 +49,8 @@ npm run preview
 
 `npm run build` schreibt statische Dateien nach `dist/`. `npm run preview` serviert diesen Ordner lokal.
 
+Beim Build komprimiert `vite-plugin-image-optimizer` alle Bilder (auch aus `public/`) nur in der Ausgabe: JPG mit mozjpeg (Qualität 75), PNG als Palette mit Alpha (Qualität 80), SVG mit SVGO. Die Originale in `public/assets/` bleiben unverändert, Einstellungen stehen in `vite.config.js`. Ergebnisse werden in `node_modules/.cache/image-optimizer` zwischengespeichert. Bei neuen PNGs mit weichen Verläufen oder Glows kurz auf Banding prüfen.
+
 ## Projektstruktur
 
 ```text
@@ -179,7 +181,22 @@ Einstellungen: `config.lenis` und `config.animation`.
 
 ## Formular und Backend
 
-Das Teilnahmeformular validiert clientseitig und speichert nichts in Local Storage, Session Storage oder Cookies. Die Validierung prüft unter anderem Pflichtfelder, E-Mail, Postleitzahl, Mindestalter und die Auswahl von ein bis drei Marathons.
+Das Teilnahmeformular validiert clientseitig und speichert nichts in Local Storage, Session Storage oder Cookies. Die Validierung prüft unter anderem Pflichtfelder, E-Mail, Postleitzahl, Mindestalter und die Auswahl mindestens eines Laufs.
+
+Zuordnung der Antwortnummern (`antwort`). Die Nummern sind fest an den Lauf gebunden und dürfen bei einer neuen Reihenfolge nicht neu vergeben werden; neue Läufe bekommen die nächste freie Nummer:
+
+| `antwort` | Lauf | Datum |
+|---|---|---|
+| 1 | Berlin, Halbmarathon | 04.04.2027 |
+| 2 | Hannover, Halbmarathon | 11.04.2027 |
+| 3 | Bonn, Halbmarathon | 11.04.2027 |
+| 4 | München, Halbmarathon | 18.04.2027 |
+| 5 | Hamburg, Halbmarathon | 25.04.2027 |
+| 6 | Mainz, Halbmarathon | 09.05.2027 |
+| 7 | Stuttgart, Halbmarathon | 05./06.06.2027 |
+| 8 | Berlin, Marathon | 26.09.2027 |
+
+Feldnamen im übertragenen `FormData`: `antwort` (Mehrfachauswahl der Läufe als Nummern, ein Eintrag je gewähltem Lauf), `vorname`, `nachname`, `email`, `geburtsdatum`, `plz`, `ort`, `privacy`, `newsletter`.
 
 Aktuell:
 

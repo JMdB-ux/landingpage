@@ -1,6 +1,6 @@
 import { gsap, ScrollTrigger } from './gsap.js';
 import { config } from './config.js';
-import { allowMotionQuery, maxWidthQuery, reducedMotionQuery } from './media.js';
+import { allowMotionQuery, maxWidthQuery, minWidthQuery, reducedMotionQuery } from './media.js';
 import { initLayerParallax } from './layer-parallax.js';
 
 /*
@@ -8,6 +8,8 @@ import { initLayerParallax } from './layer-parallax.js';
  *   [data-animate="fade-up" | "fade-in" | "scale-in"]  reveal on scroll
  *   [data-animate="stagger"]                            reveal direct children one after another
  *   [data-stagger-type="fade-in" | "scale-in"]          optional child effect for stagger groups (default: fade-up)
+ *   [data-stagger-together="lg"]                        from that breakpoint, reveal all children at once, triggered
+ *                                                       by the enclosing <section> (config.animation.sectionStart)
  *   [data-intro] > [data-intro-item]                    page intro on load
  *   [data-parallax="0.06"]                              subtle scroll-linked offset (strength = fraction of height)
  *   [data-delay="0.2"]                                  optional delay in seconds for reveals
@@ -62,14 +64,56 @@ function visibleChildren(group) {
   );
 }
 
-function initStaggers(settings) {
+/*
+ * Each child gets its own trigger (ScrollTrigger.batch), so items further down a tall
+ * group only reveal once they actually scroll into view. Children entering together
+ * still play one after another.
+ * Groups with [data-stagger-together] reveal all children at once from the given
+ * breakpoint (e.g. side-by-side columns), as soon as their section scrolls into view.
+ */
+function initStaggers(settings, wide = {}) {
   gsap.utils.toArray('[data-animate="stagger"]').forEach((group) => {
     const children = visibleChildren(group);
     if (!children.length) return;
 
-    reveal(children, group.dataset.staggerType || 'fade-up', settings, group, {
-      stagger: settings.stagger,
-      delay: Number(group.dataset.delay) || 0,
+    const type = group.dataset.staggerType || 'fade-up';
+    const delay = Number(group.dataset.delay) || 0;
+    const together = group.dataset.staggerTogether;
+
+    if (together && wide[together]) {
+      gsap.fromTo(children, getFromVars(type, settings), {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: settings.duration,
+        ease: settings.ease,
+        delay,
+        clearProps: 'transform',
+        scrollTrigger: {
+          trigger: group.closest('section') || group,
+          start: config.animation.sectionStart,
+          once: true,
+        },
+      });
+      return;
+    }
+
+    gsap.set(children, getFromVars(type, settings));
+
+    ScrollTrigger.batch(children, {
+      start: config.animation.scrollTriggerStart,
+      once: true,
+      onEnter: (batch) => gsap.to(batch, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: settings.duration,
+        ease: settings.ease,
+        stagger: settings.stagger,
+        delay,
+        // drop the inline transform afterwards (keeps e.g. the sticky prize column clean)
+        clearProps: 'transform',
+      }),
     });
   });
 }
@@ -153,15 +197,16 @@ export function initAnimations() {
     {
       allowMotion: allowMotionQuery,
       mobile: maxWidthQuery(config.mobile.breakpoint),
+      lg: minWidthQuery('lg'),
     },
     (context) => {
-      const { allowMotion, mobile } = context.conditions;
+      const { allowMotion, mobile, lg } = context.conditions;
       if (!allowMotion) return;
 
       const settings = motionSettings(mobile);
       initIntros(settings);
       initReveals(settings);
-      initStaggers(settings);
+      initStaggers(settings, { lg });
 
       if (config.parallax.enabled && !mobile) {
         initParallax();
@@ -171,11 +216,14 @@ export function initAnimations() {
     },
   );
 
-  mm.add(reducedMotionQuery, () => {
+  mm.add({ reduced: reducedMotionQuery, lg: minWidthQuery('lg') }, (context) => {
+    const { reduced, lg } = context.conditions;
+    if (!reduced) return;
+
     const settings = reducedSettings();
     initIntros(settings);
     initReveals(settings);
-    initStaggers(settings);
+    initStaggers(settings, { lg });
   });
 
   refreshWhenAssetsLoaded();

@@ -8,12 +8,15 @@ import { submitParticipation } from './participation-api.js';
  * - optional per-field messages: data-error-required, data-error-format
  * - status messages go to [data-form-status] (role="status")
  * - the submit button contains [data-submit-label] and may define data-loading-label
- * - marathon groups use [data-marathon-group] (1–3 checkboxes named "marathons")
+ * - marathon groups use [data-marathon-group] (at least 1 checkbox named "antwort"; MARATHON_MAX caps it)
  */
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)*\.[^\s@.]{2,}$/;
 const PLZ_PATTERN = /^\d{5}$/;
-const MARATHON_MAX = 3;
+// Mehrfachauswahl ohne Obergrenze laut Design; bei Bedarf wieder auf eine Zahl setzen.
+const MARATHON_MAX = Infinity;
+// name of the race checkboxes (also the prefix of the group's error element id)
+const MARATHON_FIELD = 'antwort';
 
 const messages = {
   required: 'Bitte fülle dieses Feld aus.',
@@ -25,7 +28,7 @@ const messages = {
   format: 'Bitte prüfe das Format deiner Eingabe.',
   plz: 'Bitte gib eine gültige Postleitzahl mit 5 Ziffern ein.',
   age: 'Du musst mindestens 18 Jahre alt sein, um teilzunehmen.',
-  marathons: 'Bitte wähle 1 bis 3 Marathons aus.',
+  marathons: 'Bitte wähle mindestens einen Lauf aus.',
   summary: (count) => (count === 1
     ? 'Bitte prüfe deine Angaben: Ein Feld ist noch nicht korrekt ausgefüllt.'
     : `Bitte prüfe deine Angaben: ${count} Felder sind noch nicht korrekt ausgefüllt.`),
@@ -59,7 +62,7 @@ function getFields(form) {
 
   return [...form.elements].filter((element) => {
     if (!element.matches('input, select, textarea') || !element.willValidate) return false;
-    if (element.name === 'marathons') return false;
+    if (element.name === MARATHON_FIELD) return false;
     if (element.type !== 'radio') return true;
     if (seenRadioGroups.has(element.name)) return false;
     seenRadioGroups.add(element.name);
@@ -94,7 +97,7 @@ function getErrorMessage(field) {
     return dataset.errorFormat || messages.email;
   }
 
-  if ((field.dataset.validate === 'plz' || field.name === 'postalCode') && value && !PLZ_PATTERN.test(value)) {
+  if ((field.dataset.validate === 'plz' || field.name === 'plz') && value && !PLZ_PATTERN.test(value)) {
     return dataset.errorFormat || messages.plz;
   }
 
@@ -132,13 +135,13 @@ function validateField(field) {
 }
 
 function getMarathonBoxes(group) {
-  return [...group.querySelectorAll('input[type="checkbox"][name="marathons"]')];
+  return [...group.querySelectorAll(`input[type="checkbox"][name="${MARATHON_FIELD}"]`)];
 }
 
 function validateMarathonGroup(group) {
   const boxes = getMarathonBoxes(group);
   const checkedCount = boxes.filter((box) => box.checked).length;
-  const errorElement = document.getElementById('marathons-error');
+  const errorElement = document.getElementById(`${MARATHON_FIELD}-error`);
   const message = checkedCount < 1 || checkedCount > MARATHON_MAX ? messages.marathons : '';
 
   boxes.forEach((box) => {
@@ -172,7 +175,7 @@ function initMarathonGroup(group) {
   syncMarathonLimit(group);
 
   group.addEventListener('change', (event) => {
-    if (!event.target.matches('input[type="checkbox"][name="marathons"]')) return;
+    if (!event.target.matches(`input[type="checkbox"][name="${MARATHON_FIELD}"]`)) return;
     syncMarathonLimit(group);
     if (group.hasAttribute('data-invalid')) {
       validateMarathonGroup(group);
@@ -235,7 +238,7 @@ function initForm(form) {
   form.addEventListener('focusout', (event) => {
     const field = event.target;
     if (!field.matches?.('input, select, textarea') || !field.willValidate) return;
-    if (field.name === 'marathons') return;
+    if (field.name === MARATHON_FIELD) return;
     if (field.value.trim() !== '' || field.hasAttribute('aria-invalid')) {
       validateField(field);
     }
@@ -243,7 +246,7 @@ function initForm(form) {
 
   const revalidate = (event) => {
     const field = event.target;
-    if (field.name === 'marathons') return;
+    if (field.name === MARATHON_FIELD) return;
     if (field.willValidate && getGroup(field).some((element) => element.hasAttribute('aria-invalid'))) {
       validateField(field);
     }

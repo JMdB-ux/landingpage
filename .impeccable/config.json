@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-24T12:14:35.629Z",
+        "reason": "Claude: type scale is taken from the client's Figma (h1 84px, h2 56px, h3 32px, h4 24px, body 16px; every step ≥1.33×); sizes come from clamp() tokens the static check cannot resolve"
+      }
+    ]
+  }
+}

@@ -11,7 +11,11 @@ export const config = {
     scale: 0.96,
     stagger: 0.12,
     introDelay: 0.1,
-    scrollTriggerStart: 'top 85%',
+    // Reveal once an element has clearly entered the viewport (top edge at 75%). clamp() makes items near
+    // the end of the page still reveal when the start position can't be reached by scrolling.
+    scrollTriggerStart: 'clamp(top 75%)',
+    // [data-stagger-together] groups: start as soon as the enclosing section scrolls into view.
+    sectionStart: 'clamp(top 75%)',
   },
 
   mobile: {

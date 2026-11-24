@@ -1,6 +1,7 @@
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 const root = import.meta.dirname;
 
@@ -17,7 +18,21 @@ const pages = {
 
 export default defineConfig({
   base: './',
-  plugins: [tailwindcss()],
+  plugins: [
+    tailwindcss(),
+    // Compresses images (incl. public/) in the build output only; originals stay untouched.
+    ViteImageOptimizer({
+      includePublic: true,
+      logStats: true,
+      jpeg: { quality: 75, mozjpeg: true },
+      jpg: { quality: 75, mozjpeg: true },
+      // quality < 100 quantizes to a palette (keeps alpha); check soft glows for banding when assets change
+      png: { quality: 80, compressionLevel: 9, effort: 10 },
+      svg: { multipass: true, plugins: [{ name: 'preset-default' }] },
+      cache: true,
+      cacheLocation: 'node_modules/.cache/image-optimizer',
+    }),
+  ],
   build: {
     target: 'es2022',
     rolldownOptions: {

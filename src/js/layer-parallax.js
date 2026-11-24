@@ -9,7 +9,7 @@ import { config } from './config.js';
 
 function getTrigger(stack) {
   return (
-    stack.closest('.hero-photo, .hero-price-wrap, .prize-card-media, .beer-visual, .hero-alternative') ||
+    stack.closest('.prize-card-media, .beer-visual') ||
     stack.parentElement ||
     stack
   );

@@ -33,8 +33,13 @@
   --color-text-muted: #b8bfc8;
   --color-text-inverse: #ffffff;
 
-  --color-input: #ebebeb;
-  --color-on-input: #4c6288;
+  /* Dark, recessed inputs: calmer than light fields on the black page. Border keeps ≥3:1 to the form panel (WCAG 1.4.11). */
+  --color-input: #030b19;
+  --color-on-input: #ffffff;
+  --color-input-border: #4a6894;
+  --color-input-border-hover: #7f9cc4;
+  --color-input-placeholder: #7d8da6;
+  --color-input-glow: rgb(0 167 238 / 0.25);
 
   --color-border: rgb(255 255 255 / 0.18);
   --color-border-strong: #00a7ee;
